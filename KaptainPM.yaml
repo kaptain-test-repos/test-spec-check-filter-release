@@ -1,0 +1,19 @@
+apiVersion: kaptain.org/1.13
+kind: spec-check-filter-release
+
+spec:
+  global:
+    projectName:
+      stripRepositoryNamePrefix: test
+    tokens:
+      delimiterStyle: t4
+  main:
+    specBuild:
+      type: schema
+    hooks:
+      preBuild: test-hooks/pre-build.bash
+      preTaggingTests: test-hooks/pre-tagging-tests.bash
+      postVersionsAndNaming: test-hooks/post-versions-and-naming.bash
+      preDockerPrepare: test-hooks/pre-docker-prepare.bash
+      postDockerTests: test-hooks/post-docker-tests.bash
+      postBuild: test-hooks/post-build.bash

@@ -1,0 +1,36 @@
+"$schema": https://json-schema.org/draft/2020-12/schema
+"$id": https://kaptain-test-repos.github.io/test-spec-check/spec-check-filter-release.json
+title: Test Configuration
+description: A test JSON schema for validating the spec-check-filter-release workflow
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the configuration
+  version:
+    type: string
+    pattern: '^[0-9]+\.[0-9]+\.[0-9]+$'
+    description: Semantic version string
+  enabled:
+    type: boolean
+    default: true
+    description: Whether this configuration is active
+  settings:
+    type: object
+    properties:
+      timeout:
+        type: integer
+        minimum: 0
+        maximum: 3600
+        description: Timeout in seconds
+      retries:
+        type: integer
+        minimum: 0
+        maximum: 10
+        default: 3
+        description: Number of retry attempts
+    additionalProperties: false
+required:
+  - name
+  - version
+additionalProperties: false
